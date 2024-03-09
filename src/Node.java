@@ -3,7 +3,6 @@ public class Node {
     Node[] neighbors;
 
     private boolean poweredOn = false;
-    private static int nextId = 0;
     private int id;
     private World w;
 
@@ -18,7 +17,7 @@ public class Node {
 
     public void onPowerOn() {
         poweredOn = true;
-        id = nextId++;
+        id = w.nextId();
         System.out.println(this + " prend l'id " + id);
         Message m = new Message(w.getTime());
         m.origin = id;

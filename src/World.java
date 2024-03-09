@@ -6,6 +6,11 @@ public class World {
     List<Node> nodes;
     private PriorityQueue<Event> events;
     private long t = 0;
+    private int nextId = 0;
+
+    public int nextId() {
+        return nextId++;
+    }
 
     void schedule(Event e) {
         if (e.t_sim < t)
