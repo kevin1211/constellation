@@ -17,7 +17,9 @@ public class Node {
     }
 
     public void onPowerOn() {
+        poweredOn = true;
         id = nextId++;
+        System.out.println(this + " prend l'id " + id);
         Message m = new Message(w.getTime());
         m.origin = id;
         m.reply = 0;
