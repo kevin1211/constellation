@@ -13,8 +13,8 @@ public abstract class Event implements Cloneable, Comparable<Event> {
         return e;
     }
 
-    public Event(long t, Node dest) {
+    public Event(long t, Node d) {
         t_sim = t;
-        this.dest = dest;
+        dest = d;
     }
 }
