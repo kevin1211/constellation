@@ -20,7 +20,7 @@ public class Node {
         poweredOn = true;
         id = w.nextId();
         System.out.println(name + " prend l'id " + id);
-        Message m = new Message(w.getTime());
+        Message m = w.createMessage();
         m.origin = id;
         m.reply = 0;
         m.t1 = w.getTime();

@@ -8,7 +8,7 @@ public class Message extends Event {
         return "o=" + origin + ", r=" + reply + ", t1=" + t1;
     }
 
-    public Message(long t) {
+    protected Message(long t) {
         super(t, null);
     }
 }

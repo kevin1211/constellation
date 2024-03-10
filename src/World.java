@@ -12,13 +12,13 @@ public class World {
         return nextId++;
     }
 
-    void schedule(Event e) {
+    public void schedule(Event e) {
         if (e.t_sim < t)
             throw new RuntimeException("retour vers le passé ?");
         events.add(e);
     }
 
-    void send(Message m, Node origin) {
+    public void send(Message m, Node origin) {
         try {
             for (Node dest : nodes)
                 if (dest != origin) {
@@ -37,7 +37,7 @@ public class World {
         }
     }
 
-    void run() {
+    public void run() {
         System.err.println("@startuml");
         long prev_t = -1; //display t=0
         while (!events.isEmpty()) {
@@ -59,8 +59,12 @@ public class World {
         System.err.println("@enduml");
     }
 
-    long getTime() {
+    public long getTime() {
         return t;
+    }
+
+    public Message createMessage() {
+        return new Message(t);
     }
 
     public World() {
