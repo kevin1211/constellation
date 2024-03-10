@@ -1,15 +1,24 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class Node {
     public final String name;
     int x, y;
-    Node[] neighbors;
     int id;
 
     private boolean poweredOn = false;
+    private Set<Integer> neighbors;
     private World w;
 
     public void onMessage(Message m) {
         if (poweredOn) {
-            System.out.println(name + " a reçu " + m);
+            neighbors.add(m.origin);
+            if (m.reply == 0) {
+                Message r = w.createMessage();
+                r.origin = id;
+                r.reply = m.origin;
+                w.send(r, this);
+            }
         }
         else {
             System.out.println("ignoré car éteint");
@@ -27,10 +36,15 @@ public class Node {
         w.send(m, this);
     }
 
+    public boolean knows(Node n) {
+        return neighbors.contains(n.id);
+    }
+
     public Node(World world, String n, int x, int y) {
         name = n;
         this.x = x;
         this.y = y;
         w = world;
+        neighbors = new HashSet<>();
     }
 }

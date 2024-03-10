@@ -15,5 +15,16 @@ public class App {
         w.schedule(new PowerOn(0, c));
         w.schedule(new PowerOn(0, d));
         w.run();
+        boolean ok = true;
+        for (Node n : w.nodes) {
+            for (Node n2 : w.nodes) {
+                if (n != n2 && !n.knows(n2)) {
+                    ok = false;
+                    System.out.println("fail: " + n2.name + " not discovered by " + n.name);
+                }
+            }
+        }
+        if (!ok)
+            System.exit(1);
     }
 }
