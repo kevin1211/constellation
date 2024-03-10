@@ -44,13 +44,14 @@ public class World {
             Event e = events.poll();
             t = e.t_sim;
             if (t != prev_t)
-                System.out.println("t=" + e.t_sim);
+                System.err.println("... t=" + e.t_sim + " ...");
             if (e instanceof PowerOn) {
+                System.err.println("note over " + e.dest.name + ": powered on");
                 e.dest.onPowerOn();
             }
             else if (e instanceof Message) {
                 Message m = (Message)e;
-                System.err.println(m.origin_sim + " -> " + e.dest + ": " + m);
+                System.err.println(m.origin_sim.name + " -> " + e.dest.name + ": " + m);
                 e.dest.onMessage(m);
             }
             prev_t = t;
